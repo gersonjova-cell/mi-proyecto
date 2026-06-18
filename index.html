@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f4ee" />
+    <meta name="description" content="Luma te ayuda a construir una rutina de sueño saludable y constante." />
+    <title>Luma — Tu descanso, tu progreso</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Luma inicio">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 34 34"><path d="M22.5 7.5A11 11 0 1 0 27 24.8 9.7 9.7 0 0 1 22.5 7.5Z"/></svg>
+        </span>
+        <span>Luma</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <button class="nav-item active" data-view="hoy"><span class="nav-icon">⌂</span> Hoy</button>
+        <button class="nav-item" data-view="progreso"><span class="nav-icon">↗</span> Mi progreso</button>
+        <button class="nav-item" data-view="objetivos"><span class="nav-icon">◎</span> Objetivos</button>
+        <button class="nav-item" data-view="recompensas"><span class="nav-icon">◇</span> Recompensas</button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="plan-card">
+        <span class="plan-pill">PLAN LUMA+</span>
+        <strong>Tu mejor descanso empieza aquí.</strong>
+        <span>Racha protegida y acceso a todas las recompensas.</span>
+        <button id="managePlan">Gestionar plan <span>→</span></button>
+      </div>
+      <button class="nav-item profile-link" data-view="perfil"><span class="avatar mini">M</span><span><strong>Marina</strong><small>Mi perfil</small></span><span class="chevron">›</span></button>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <button class="mobile-brand" aria-label="Abrir menú"><span class="brand-mark"><svg viewBox="0 0 34 34"><path d="M22.5 7.5A11 11 0 1 0 27 24.8 9.7 9.7 0 0 1 22.5 7.5Z"/></svg></span></button>
+        <div>
+          <p id="dateLabel">JUEVES, 18 DE JUNIO</p>
+          <h1 id="pageTitle">Buenas noches, Marina <span>✦</span></h1>
+        </div>
+        <div class="top-actions">
+          <div class="points-pill"><span class="point-gem">◆</span><span><strong id="headerPoints">2,840</strong><small>puntos</small></span></div>
+          <button class="icon-button" id="notificationBtn" aria-label="Notificaciones">♢<span class="notification-dot"></span></button>
+          <span class="avatar">M</span>
+        </div>
+      </header>
+
+      <section class="view active" id="hoy">
+        <div class="hero">
+          <div class="hero-content">
+            <div class="eyebrow"><span>☾</span> DÍA <span id="currentDay">142</span> DE 365</div>
+            <h2>Cada noche cuenta.<br />Esta también.</h2>
+            <p>Completa tu rutina de hoy y sigue construyendo el hábito que cambiará tus mañanas.</p>
+            <div class="hero-stats">
+              <div><strong id="streakValue">18</strong><span>días de racha</span></div>
+              <div class="vertical-line"></div>
+              <div><strong><span id="pointsValue">2,840</span> <small>pts</small></strong><span>acumulados</span></div>
+            </div>
+          </div>
+          <div class="progress-orbit" aria-label="39 por ciento del camino completado">
+            <svg viewBox="0 0 220 220">
+              <circle class="orbit-track" cx="110" cy="110" r="88" />
+              <circle class="orbit-progress" cx="110" cy="110" r="88" />
+            </svg>
+            <div class="orbit-center"><span>Tu camino</span><strong id="percentValue">39%</strong><small>completado</small></div>
+            <span class="spark s1">✦</span><span class="spark s2">·</span><span class="spark s3">✧</span>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <section class="routine-section">
+            <div class="section-heading">
+              <div><span class="overline">RUTINA DE HOY</span><h3>Prepara tu descanso</h3></div>
+              <span class="time-left">⏱ <strong>2h 14m</strong> restantes</span>
+            </div>
+            <div class="task-list" id="taskList">
+              <article class="task-card completed" data-points="5">
+                <button class="task-check" aria-label="Cambiar estado de la tarea">✓</button>
+                <div class="task-icon peach">☼</div>
+                <div class="task-copy"><strong>Luz de mañana</strong><span>10 min de luz natural al despertar</span></div>
+                <span class="task-time">08:00</span><span class="task-points">◆ +5</span>
+              </article>
+              <article class="task-card completed" data-points="10">
+                <button class="task-check" aria-label="Cambiar estado de la tarea">✓</button>
+                <div class="task-icon mint">♨</div>
+                <div class="task-copy"><strong>Sin cafeína tarde</strong><span>Evítala después de las 15:00</span></div>
+                <span class="task-time">15:00</span><span class="task-points">◆ +10</span>
+              </article>
+              <article class="task-card current" data-points="15">
+                <button class="task-check" aria-label="Completar tarea"></button>
+                <div class="task-icon lavender">▱</div>
+                <div class="task-copy"><strong>Pausa digital</strong><span>Deja las pantallas 45 min antes</span></div>
+                <span class="task-time">22:15</span><span class="task-points">◆ +15</span>
+              </article>
+              <article class="task-card" data-points="20">
+                <button class="task-check" aria-label="Completar tarea"></button>
+                <div class="task-icon blue">☾</div>
+                <div class="task-copy"><strong>A la cama</strong><span>Hora objetivo para dormir</span></div>
+                <span class="task-time">23:00</span><span class="task-points">◆ +20</span>
+              </article>
+            </div>
+            <div class="daily-progress"><span><strong id="taskCount">2 de 4</strong> completadas</span><div><i id="taskProgress"></i></div><span><strong id="dailyPoints">15</strong> / 50 pts</span></div>
+          </section>
+
+          <aside class="right-column">
+            <section class="insight-card">
+              <div class="section-heading compact"><div><span class="overline">TU DESCANSO</span><h3>Así dormiste</h3></div><button class="more" aria-label="Más opciones">•••</button></div>
+              <div class="sleep-score">
+                <div class="score-ring"><svg viewBox="0 0 90 90"><circle cx="45" cy="45" r="37"/><circle class="score-progress" cx="45" cy="45" r="37"/></svg><span><strong>86</strong><small>/ 100</small></span></div>
+                <div><span class="quality">MUY BIEN</span><strong>7h 42m</strong><small>+24 min vs. tu media</small></div>
+              </div>
+              <div class="sleep-chart">
+                <div class="chart-labels"><span>23:18</span><span>07:00</span></div>
+                <div class="wave"><svg viewBox="0 0 420 56" preserveAspectRatio="none"><path d="M0 25 C20 25 22 8 40 18 S62 40 78 30 S98 12 115 25 S135 45 152 34 S170 4 188 22 S208 49 225 30 S247 9 264 24 S282 43 300 34 S321 5 339 22 S361 46 378 31 S398 13 420 22"/><path class="wave-fill" d="M0 25 C20 25 22 8 40 18 S62 40 78 30 S98 12 115 25 S135 45 152 34 S170 4 188 22 S208 49 225 30 S247 9 264 24 S282 43 300 34 S321 5 339 22 S361 46 378 31 S398 13 420 22 V56 H0Z"/></svg></div>
+                <div class="chart-legend"><span><i class="dot awake"></i>Despierto</span><span><i class="dot light"></i>Ligero</span><span><i class="dot deep"></i>Profundo</span></div>
+              </div>
+            </section>
+
+            <section class="reward-card">
+              <div class="reward-icon">♢<span>✦</span></div>
+              <div><span class="overline">TU GRAN RECOMPENSA</span><h3>$150 <small>USD</small></h3><p>Completa los 365 días para desbloquearla.</p></div>
+              <button class="arrow-button" data-view="recompensas" aria-label="Ver recompensa">→</button>
+              <div class="reward-progress"><i></i></div><small class="days-left">Te faltan <strong>223 días</strong></small>
+            </section>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view empty-view" id="progreso"><span class="big-icon">↗</span><span class="overline">MI PROGRESO</span><h2>Vas mejor de lo que crees.</h2><p>Has cumplido tu rutina 18 días seguidos y llevas un 39% del camino anual.</p><div class="metric-row"><div><strong>142</strong><span>días completados</span></div><div><strong>86</strong><span>calidad media</span></div><div><strong>7h 38m</strong><span>descanso medio</span></div></div></section>
+      <section class="view empty-view" id="objetivos"><span class="big-icon">◎</span><span class="overline">OBJETIVOS</span><h2>Tu rutina, a tu manera.</h2><p>Ajusta tus horas objetivo y construye un plan que puedas mantener.</p><button class="primary-action" id="newGoal">+ Crear nuevo objetivo</button></section>
+      <section class="view empty-view" id="recompensas"><span class="big-icon">◇</span><span class="overline">RECOMPENSAS</span><h2>Tu constancia tiene premio.</h2><p>Al completar 365 días podrás solicitar el canje de tus puntos por una transferencia de hasta $150 USD.</p><div class="reward-large"><strong>2,840</strong><span>puntos disponibles</span><div><i></i></div><small>142 de 365 días</small></div><p class="legal-note">El canje está sujeto a validación de actividad y procesamiento manual. Consulta los términos del programa antes de suscribirte.</p></section>
+      <section class="view empty-view" id="perfil"><span class="avatar profile-avatar">M</span><span class="overline">MI PERFIL</span><h2>Marina López</h2><p>Miembro de Luma+ desde enero de 2026.</p><button class="primary-action" id="resetDemo">Restablecer datos de demo</button></section>
+    </main>
+
+    <nav class="mobile-nav" aria-label="Navegación móvil">
+      <button class="active" data-view="hoy"><span>⌂</span>Hoy</button><button data-view="progreso"><span>↗</span>Progreso</button><button data-view="objetivos"><span>◎</span>Objetivos</button><button data-view="recompensas"><span>◇</span>Premios</button>
+    </nav>
+
+    <div class="toast" id="toast" role="status"><span>✓</span><p><strong>¡Buen trabajo!</strong><small>Tus puntos se han actualizado.</small></p></div>
+    <dialog id="planDialog"><button class="close-dialog" aria-label="Cerrar">×</button><span class="brand-mark"><svg viewBox="0 0 34 34"><path d="M22.5 7.5A11 11 0 1 0 27 24.8 9.7 9.7 0 0 1 22.5 7.5Z"/></svg></span><span class="overline">PLAN LUMA+</span><h2>Cuida tu descanso cada día.</h2><p>Acceso completo a rutinas personalizadas, estadísticas y recompensas por constancia.</p><strong class="price">$4.99 <small>USD / mes</small></strong><button class="primary-action close-plan">Continuar con mi plan</button></dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
