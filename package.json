@@ -1,0 +1,23 @@
+{
+  "name": "ai-agent-demo",
+  "version": "1.0.0",
+  "description": "Agente de IA para tomar pedidos de playeras por teléfono via Twilio y Claude",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.27.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.13",
+    "twilio": "^5.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
