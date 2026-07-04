@@ -1,0 +1,38 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+
+<section class="jv section section--light reveal">
+  <div class="wrap jv-local-layout">
+    <div class="media">
+      {%- if section.settings.image -%}
+        {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', alt: section.settings.image.alt | default: 'Jerarquía Volátil en Monterrey' }}
+      {%- endif -%}
+    </div>
+    <div class="jv-local__content">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="h-display h-display--lg">{{ section.settings.heading }}</h2>
+      <div class="body-text" style="margin-top:20px">{{ section.settings.body }}</div>
+      {%- if section.settings.note != blank -%}
+        <p class="local-note">{{ section.settings.note }}</p>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="btn btn--primary" href="{{ section.settings.button_link | default: 'https://wa.me/528140067246' }}" target="_blank" rel="noopener">{{ section.settings.button_label }} →</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JV — Entrega local (Monterrey)",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagen editorial urbana" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Monterrey, Nuevo León" },
+    { "type": "richtext", "id": "heading", "label": "Título", "default": "<p>¿Estás<br>en Monterrey?</p>" },
+    { "type": "richtext", "id": "body", "label": "Texto", "default": "<p>Estamos en Monterrey, Nuevo León. Contamos con inventario en bodega y operamos mediante venta online. Podemos coordinar entregas en puntos acordados y estaciones del Metro de Monterrey de acuerdo con disponibilidad. En compras de tres piezas o más, consulta la disponibilidad de entrega a domicilio sin costo en la zona poniente de Monterrey. Pago contra entrega disponible en entregas locales elegibles.</p>" },
+    { "type": "text", "id": "note", "label": "Nota", "default": "Las condiciones de cobertura y disponibilidad pueden variar. Confirma los detalles antes de finalizar tu pedido." },
+    { "type": "text", "id": "button_label", "label": "Botón — texto", "default": "Hablar por WhatsApp" },
+    { "type": "url", "id": "button_link", "label": "Botón — enlace (wa.me)" }
+  ],
+  "presets": [{ "name": "JV — Entrega local (Monterrey)" }]
+}
+{% endschema %}

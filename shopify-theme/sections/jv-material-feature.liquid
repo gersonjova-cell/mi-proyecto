@@ -1,0 +1,36 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+
+<section class="jv section reveal">
+  <div class="wrap jv-material-layout">
+    <div class="media">
+      {%- if section.settings.image -%}
+        {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', alt: section.settings.image.alt | default: 'Detalle de tela de algodón peinado Jerarquía Volátil' }}
+      {%- endif -%}
+    </div>
+    <div class="jv-material__content">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="h-display h-display--lg">{{ section.settings.heading }}</h2>
+      <span class="material-tag mono">{{ section.settings.material_tag }}</span>
+      <p class="body-text">{{ section.settings.body }}</p>
+      {%- if section.settings.link_label != blank -%}
+        <a href="{{ section.settings.link_url | default: '#' }}" class="link" style="margin-top:24px;display:inline-flex">{{ section.settings.link_label }} →</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JV — Material feature",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagen (macro de tela)" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Material" },
+    { "type": "richtext", "id": "heading", "label": "Título", "default": "<p>Se siente diferente<br>desde que la tomas.</p>" },
+    { "type": "text", "id": "material_tag", "label": "Subtítulo dorado", "default": "Algodón peinado" },
+    { "type": "richtext", "id": "body", "label": "Texto", "default": "<p>El algodón peinado pasa por un proceso de selección de fibras que ayuda a obtener una superficie más limpia, uniforme y agradable al tacto. En las prendas JV que utilizan algodón peinado, lo indicamos claramente en sus especificaciones.</p>" },
+    { "type": "text", "id": "link_label", "label": "Enlace — texto", "default": "Ver prendas" },
+    { "type": "url", "id": "link_url", "label": "Enlace — destino" }
+  ],
+  "presets": [{ "name": "JV — Material feature" }]
+}
+{% endschema %}

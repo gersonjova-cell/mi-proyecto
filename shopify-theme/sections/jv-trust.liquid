@@ -1,0 +1,69 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+
+{%- assign jv_icons = 'pin,chat,doc,shield' | split: ',' -%}
+{%- capture jv_icon_pin -%}<path d="M12 21s7-6.1 7-11.5A7 7 0 005 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/>{%- endcapture -%}
+{%- capture jv_icon_chat -%}<path d="M4 5h16v11H8l-4 4V5z"/>{%- endcapture -%}
+{%- capture jv_icon_doc -%}<path d="M6 3h9l5 5v13H6z"/><path d="M9 12h6M9 16h6M9 8h3"/>{%- endcapture -%}
+{%- capture jv_icon_shield -%}<path d="M12 3l8 3v6c0 5-3.5 8.2-8 9-4.5-.8-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/>{%- endcapture -%}
+
+<section class="jv section section--tight reveal">
+  <div class="wrap">
+    <div class="jv-trust__grid">
+      {%- for block in section.blocks -%}
+        <div class="trust" {{ block.shopify_attributes }}>
+          <svg viewBox="0 0 24 24">
+            {%- case block.settings.icon -%}
+              {%- when 'pin' -%}{{ jv_icon_pin }}
+              {%- when 'chat' -%}{{ jv_icon_chat }}
+              {%- when 'doc' -%}{{ jv_icon_doc }}
+              {%- when 'shield' -%}{{ jv_icon_shield }}
+            {%- endcase -%}
+          </svg>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.body }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JV — Confianza JV",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Bloque de confianza",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            { "value": "pin", "label": "Ubicación" },
+            { "value": "chat", "label": "Atención" },
+            { "value": "doc", "label": "Información" },
+            { "value": "shield", "label": "Seguridad" }
+          ],
+          "default": "pin"
+        },
+        { "type": "text", "id": "title", "label": "Título" },
+        { "type": "textarea", "id": "body", "label": "Texto" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "JV — Confianza JV",
+      "blocks": [
+        { "type": "trust_item", "settings": { "icon": "pin", "title": "Monterrey", "body": "Marca nacida en Monterrey, Nuevo León." } },
+        { "type": "trust_item", "settings": { "icon": "chat", "title": "Atención directa", "body": "Habla directamente con nuestro equipo." } },
+        { "type": "trust_item", "settings": { "icon": "doc", "title": "Información clara", "body": "Consulta composición, corte y gramaje disponible." } },
+        { "type": "trust_item", "settings": { "icon": "shield", "title": "Compra segura", "body": "Utiliza los métodos disponibles en nuestra tienda online." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,41 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+
+<section class="jv section jv-newsletter reveal">
+  <div class="wrap">
+    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    <h2 class="h-display h-display--lg">{{ section.settings.heading }}</h2>
+    <p class="body-text" style="margin:14px auto 0">{{ section.settings.body }}</p>
+
+    {%- form 'customer', id: 'jv-newsletter-form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter,jerarquia-volatil">
+      <input
+        type="email"
+        name="contact[email]"
+        placeholder="Tu correo"
+        required
+        autocomplete="email"
+        value="{% if form.email %}{{ form.email }}{% endif %}"
+      >
+      <button class="btn btn--primary" type="submit">Entrar →</button>
+    {%- endform -%}
+
+    {%- if form.posted_successfully? -%}
+      <p class="jv-newsletter__msg">Ya estás dentro.</p>
+    {%- elsif form.errors -%}
+      <p class="jv-newsletter__msg">{{ form.errors.messages['contact[email]'] | default: 'Revisa tu correo e inténtalo de nuevo.' }}</p>
+    {%- endif -%}
+    <p class="jv-newsletter__helper">Tu correo se guarda directamente como cliente en Jerarquía Volátil, listo para recibir novedades y restocks.</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JV — Newsletter",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Acceso JV" },
+    { "type": "richtext", "id": "heading", "label": "Título", "default": "<p>Entra a<br>la jerarquía.</p>" },
+    { "type": "text", "id": "body", "label": "Texto", "default": "Nuevas prendas. Restocks. Lanzamientos." }
+  ],
+  "presets": [{ "name": "JV — Newsletter" }]
+}
+{% endschema %}

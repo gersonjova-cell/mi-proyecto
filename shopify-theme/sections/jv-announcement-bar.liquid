@@ -1,0 +1,17 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+
+<div class="jv jv-announce">
+  <span class="mono ann-full">{{ section.settings.text_desktop }}</span>
+  <span class="mono ann-short">{{ section.settings.text_mobile }}</span>
+</div>
+
+{% schema %}
+{
+  "name": "JV — Announcement bar",
+  "settings": [
+    { "type": "text", "id": "text_desktop", "label": "Texto (escritorio)", "default": "MONTERREY, NUEVO LEÓN · PRENDAS CON PRESENCIA" },
+    { "type": "text", "id": "text_mobile", "label": "Texto (móvil)", "default": "MTY · PRENDAS CON PRESENCIA" }
+  ],
+  "presets": [{ "name": "JV — Announcement bar" }]
+}
+{% endschema %}

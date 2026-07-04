@@ -1,0 +1,80 @@
+{
+  "sections": {
+    "jv-announcement": { "type": "jv-announcement-bar" },
+    "jv-hero": { "type": "jv-hero" },
+    "jv-manifesto": { "type": "jv-manifesto" },
+    "jv-selection": {
+      "type": "jv-featured-selection",
+      "settings": { "products_to_show": 4 }
+    },
+    "jv-collections": {
+      "type": "jv-collections-editorial",
+      "blocks": {
+        "core": { "type": "collection_card", "settings": { "title": "Core", "body": "Lo esencial de Jerarquía Volátil. Prendas versátiles, limpias y construidas para formar parte de tu rotación diaria.", "link_label": "Descubrir Core" } },
+        "heavy": { "type": "collection_card", "settings": { "title": "Heavyweight", "body": "Más peso. Mayor estructura. Una caída con mayor presencia.", "link_label": "Ver Heavyweight" } },
+        "oversize": { "type": "collection_card", "settings": { "title": "Oversize", "body": "Mayor volumen, libertad y una silueta que transforma la forma en la que cae la prenda.", "link_label": "Descubrir Oversize" } }
+      },
+      "block_order": ["core", "heavy", "oversize"]
+    },
+    "jv-gsm": {
+      "type": "jv-gsm-scale",
+      "blocks": {
+        "t1": { "type": "tier", "settings": { "range": "140–160", "name": "Ligera", "description": "Tela ligera y fresca. Ideal para una sensación cómoda y de menor peso.", "bar_percent": 25 } },
+        "t2": { "type": "tier", "settings": { "range": "180–220", "name": "Equilibrada", "description": "Mayor estructura sin llegar a una sensación excesivamente pesada. Un equilibrio entre comodidad y presencia.", "bar_percent": 48 } },
+        "t3": { "type": "tier", "settings": { "range": "250–300", "name": "Heavyweight", "description": "Tela de mayor peso y estructura. Diseñada para generar una caída más sólida.", "bar_percent": 70 } },
+        "t4": { "type": "tier", "settings": { "range": "400+", "name": "Super Heavyweight", "description": "Construcción considerablemente pesada. Máxima estructura y una sensación textil contundente.", "bar_percent": 100 } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"]
+    },
+    "jv-material": { "type": "jv-material-feature" },
+    "jv-pillars": {
+      "type": "jv-pillars",
+      "blocks": {
+        "p1": { "type": "pillar", "settings": { "title": "Tela", "body": "La composición y el tejido cambian la experiencia de una prenda." } },
+        "p2": { "type": "pillar", "settings": { "title": "Peso", "body": "El gramaje influye en la estructura y la sensación de la tela." } },
+        "p3": { "type": "pillar", "settings": { "title": "Caída", "body": "La manera en la que una playera se proyecta sobre el cuerpo importa." } },
+        "p4": { "type": "pillar", "settings": { "title": "Construcción", "body": "Cuello, costuras y acabados forman parte de la calidad percibida." } }
+      },
+      "block_order": ["p1", "p2", "p3", "p4"]
+    },
+    "jv-fits": {
+      "type": "jv-fit-guide",
+      "blocks": {
+        "f1": { "type": "fit", "settings": { "name": "Slim Fit", "description": "Más cercano al cuerpo.", "silhouette": "slim" } },
+        "f2": { "type": "fit", "settings": { "name": "Regular Fit", "description": "Equilibrado y versátil.", "silhouette": "regular" } },
+        "f3": { "type": "fit", "settings": { "name": "Loose Fit", "description": "Mayor amplitud y movimiento.", "silhouette": "loose" } },
+        "f4": { "type": "fit", "settings": { "name": "Oversize", "description": "Volumen y caída dominante.", "silhouette": "oversize" } },
+        "f5": { "type": "fit", "settings": { "name": "Boxy Fit", "description": "Anchura y estructura visual.", "silhouette": "boxy" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5"]
+    },
+    "jv-detail": { "type": "jv-detail-banner" },
+    "jv-local": { "type": "jv-local-delivery" },
+    "jv-trust": {
+      "type": "jv-trust",
+      "blocks": {
+        "tr1": { "type": "trust_item", "settings": { "icon": "pin", "title": "Monterrey", "body": "Marca nacida en Monterrey, Nuevo León." } },
+        "tr2": { "type": "trust_item", "settings": { "icon": "chat", "title": "Atención directa", "body": "Habla directamente con nuestro equipo." } },
+        "tr3": { "type": "trust_item", "settings": { "icon": "doc", "title": "Información clara", "body": "Consulta composición, corte y gramaje disponible." } },
+        "tr4": { "type": "trust_item", "settings": { "icon": "shield", "title": "Compra segura", "body": "Utiliza los métodos disponibles en nuestra tienda online." } }
+      },
+      "block_order": ["tr1", "tr2", "tr3", "tr4"]
+    },
+    "jv-newsletter": { "type": "jv-newsletter" }
+  },
+  "order": [
+    "jv-announcement",
+    "jv-hero",
+    "jv-manifesto",
+    "jv-selection",
+    "jv-collections",
+    "jv-gsm",
+    "jv-material",
+    "jv-pillars",
+    "jv-fits",
+    "jv-detail",
+    "jv-local",
+    "jv-trust",
+    "jv-newsletter"
+  ]
+}

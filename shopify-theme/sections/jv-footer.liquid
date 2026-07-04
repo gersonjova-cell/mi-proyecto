@@ -1,0 +1,87 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+<script src="{{ 'jv-theme.js' | asset_url }}" defer="defer"></script>
+
+<footer class="jv jv-footer" id="contacto">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-lockup">{{ section.settings.brand_line1 }}<em>{{ section.settings.brand_line2 }}</em></div>
+        <p>{{ section.settings.tagline }}</p>
+        <div class="footer-loc">{{ section.settings.location }}</div>
+      </div>
+
+      {%- if section.settings.menu_tienda != blank -%}
+      <div class="foot-col">
+        <button class="foot-col-toggle" type="button" data-jv-acc-toggle>Tienda<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke-linecap="round"/></svg></button>
+        <ul class="foot-col-list">
+          {%- for link in section.settings.menu_tienda.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}
+        </ul>
+      </div>
+      {%- endif -%}
+
+      {%- if section.settings.menu_ayuda != blank -%}
+      <div class="foot-col">
+        <button class="foot-col-toggle" type="button" data-jv-acc-toggle>Ayuda<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke-linecap="round"/></svg></button>
+        <ul class="foot-col-list">
+          {%- for link in section.settings.menu_ayuda.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}
+        </ul>
+      </div>
+      {%- endif -%}
+
+      {%- if section.settings.menu_marca != blank -%}
+      <div class="foot-col">
+        <button class="foot-col-toggle" type="button" data-jv-acc-toggle>{{ section.settings.brand_line1 }} {{ section.settings.brand_line2 }}<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke-linecap="round"/></svg></button>
+        <ul class="foot-col-list">
+          {%- for link in section.settings.menu_marca.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}
+        </ul>
+      </div>
+      {%- endif -%}
+
+      <div class="foot-col">
+        <button class="foot-col-toggle" type="button" data-jv-acc-toggle>Contacto<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke-linecap="round"/></svg></button>
+        <ul class="foot-col-list">
+          {%- if section.settings.whatsapp != blank -%}
+          <li class="foot-contact-row"><span class="mono">WhatsApp: {{ section.settings.whatsapp }}</span><a class="link" href="https://wa.me/{{ section.settings.whatsapp | remove: ' ' | remove: '+' }}" target="_blank" rel="noopener">Abrir →</a></li>
+          {%- endif -%}
+          {%- if section.settings.support_email != blank -%}
+          <li class="foot-contact-row"><span class="mono">Soporte: {{ section.settings.support_email }}</span><a class="link" href="mailto:{{ section.settings.support_email }}">Abrir →</a></li>
+          {%- endif -%}
+          {%- if section.settings.direct_email != blank -%}
+          <li class="foot-contact-row"><span class="mono">Directa: {{ section.settings.direct_email }}</span><a class="link" href="mailto:{{ section.settings.direct_email }}">Abrir →</a></li>
+          {%- endif -%}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {{ 'now' | date: '%Y' }} {{ section.settings.brand_line1 }} {{ section.settings.brand_line2 }}. {{ section.settings.location | upcase }}.</span>
+      <span>
+        {%- if section.settings.instagram_url != blank -%}<a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener">Instagram</a>{%- endif -%}
+        {%- if section.settings.facebook_url != blank -%} · <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener">Facebook</a>{%- endif -%}
+        {%- if section.settings.tiktok_url != blank -%} · <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener">TikTok</a>{%- endif -%}
+      </span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "JV — Footer",
+  "settings": [
+    { "type": "text", "id": "brand_line1", "label": "Marca — línea 1", "default": "Jerarquía" },
+    { "type": "text", "id": "brand_line2", "label": "Marca — línea 2", "default": "Volátil" },
+    { "type": "text", "id": "tagline", "label": "Frase", "default": "Prendas con presencia." },
+    { "type": "text", "id": "location", "label": "Ubicación", "default": "Monterrey, Nuevo León, México" },
+    { "type": "link_list", "id": "menu_tienda", "label": "Menú — Tienda" },
+    { "type": "link_list", "id": "menu_ayuda", "label": "Menú — Ayuda" },
+    { "type": "link_list", "id": "menu_marca", "label": "Menú — Jerarquía Volátil" },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp", "default": "81 4006 7246" },
+    { "type": "text", "id": "support_email", "label": "Correo de soporte", "default": "soporte.proddi@gmail.com" },
+    { "type": "text", "id": "direct_email", "label": "Correo de comunicación directa", "default": "jv@proddigit.shop" },
+    { "type": "url", "id": "instagram_url", "label": "Instagram" },
+    { "type": "url", "id": "facebook_url", "label": "Facebook" },
+    { "type": "url", "id": "tiktok_url", "label": "TikTok" }
+  ],
+  "presets": [{ "name": "JV — Footer" }]
+}
+{% endschema %}

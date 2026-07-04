@@ -1,0 +1,72 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+
+<section class="jv section reveal" id="fits">
+  <div class="wrap">
+    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    <h2 class="h-display h-display--lg">{{ section.settings.heading }}</h2>
+    {%- if section.settings.subheading != blank -%}
+      <p class="body-text" style="margin-top:18px">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+    <div class="jv-fits__rail" style="margin-top:44px">
+      {%- for block in section.blocks -%}
+        <div class="fit-card" {{ block.shopify_attributes }}>
+          <div class="fit-silhouette fit-{{ block.settings.silhouette }}"><i></i></div>
+          <span class="fit-card__name">{{ block.settings.name }}</span>
+          <p>{{ block.settings.description }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.link_label != blank -%}
+      <div class="jv-fits__foot"><a href="{{ section.settings.link_url | default: '#' }}" class="link">{{ section.settings.link_label }} →</a></div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JV — Guía de fits",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Guía de siluetas" },
+    { "type": "richtext", "id": "heading", "label": "Título", "default": "<p>No todos los cortes<br>caen igual.</p>" },
+    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Conoce la diferencia antes de elegir tu talla." },
+    { "type": "text", "id": "link_label", "label": "Enlace inferior — texto", "default": "Ver guía de tallas" },
+    { "type": "url", "id": "link_url", "label": "Enlace inferior — destino" }
+  ],
+  "blocks": [
+    {
+      "type": "fit",
+      "name": "Corte",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Nombre del corte" },
+        { "type": "textarea", "id": "description", "label": "Descripción" },
+        {
+          "type": "select",
+          "id": "silhouette",
+          "label": "Silueta",
+          "options": [
+            { "value": "slim", "label": "Slim Fit" },
+            { "value": "regular", "label": "Regular Fit" },
+            { "value": "loose", "label": "Loose Fit" },
+            { "value": "oversize", "label": "Oversize" },
+            { "value": "boxy", "label": "Boxy Fit" }
+          ],
+          "default": "regular"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "JV — Guía de fits",
+      "blocks": [
+        { "type": "fit", "settings": { "name": "Slim Fit", "description": "Más cercano al cuerpo.", "silhouette": "slim" } },
+        { "type": "fit", "settings": { "name": "Regular Fit", "description": "Equilibrado y versátil.", "silhouette": "regular" } },
+        { "type": "fit", "settings": { "name": "Loose Fit", "description": "Mayor amplitud y movimiento.", "silhouette": "loose" } },
+        { "type": "fit", "settings": { "name": "Oversize", "description": "Volumen y caída dominante.", "silhouette": "oversize" } },
+        { "type": "fit", "settings": { "name": "Boxy Fit", "description": "Anchura y estructura visual.", "silhouette": "boxy" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

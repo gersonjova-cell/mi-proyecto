@@ -1,0 +1,45 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+
+{%- assign jv_collection = section.settings.collection -%}
+
+<section class="jv section section--tight reveal" id="seleccion">
+  <div class="wrap">
+    <div class="split-head">
+      <div>
+        <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+        <h2 class="h-display h-display--lg">{{ section.settings.heading }}</h2>
+      </div>
+      {%- if section.settings.subheading != blank -%}
+        <p class="body-text">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if jv_collection != blank and jv_collection.products.size > 0 -%}
+      <div class="jv-selection__grid">
+        {%- for product in jv_collection.products limit: section.settings.products_to_show -%}
+          {% render 'jv-product-card', product: product %}
+        {%- endfor -%}
+      </div>
+      <div class="jv-selection__foot">
+        <a href="{{ jv_collection.url }}" class="link">{{ section.settings.link_label }} →</a>
+      </div>
+    {%- else -%}
+      <p class="body-text">Selecciona una colección en la configuración de esta sección para mostrar prendas reales aquí.</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JV — Selección destacada",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Selección JV" },
+    { "type": "richtext", "id": "heading", "label": "Título", "default": "<p>Piezas para<br>empezar.</p>" },
+    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Prendas elegidas por su tela, construcción y presencia." },
+    { "type": "collection", "id": "collection", "label": "Colección a mostrar" },
+    { "type": "range", "id": "products_to_show", "label": "Número de productos", "min": 4, "max": 8, "step": 1, "default": 4 },
+    { "type": "text", "id": "link_label", "label": "Enlace inferior — texto", "default": "Ver todas las prendas" }
+  ],
+  "presets": [{ "name": "JV — Selección destacada" }]
+}
+{% endschema %}

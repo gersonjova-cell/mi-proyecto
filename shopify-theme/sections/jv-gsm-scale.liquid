@@ -1,0 +1,68 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+
+<section class="jv section section--light reveal">
+  <div class="wrap jv-gsm-layout">
+    <div>
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="h-display h-display--lg">{{ section.settings.heading }}</h2>
+      <p class="body-text" style="margin-top:22px">{{ section.settings.body }}</p>
+      {%- if section.settings.link_label != blank -%}
+        <a href="{{ section.settings.link_url | default: '#' }}" class="link" style="margin-top:26px;display:inline-flex">{{ section.settings.link_label }} →</a>
+      {%- endif -%}
+    </div>
+    <div>
+      {%- for block in section.blocks -%}
+        <div class="gsm-row" {{ block.shopify_attributes }}>
+          <span class="gsm-row__num">{{ block.settings.range }}</span>
+          <span class="gsm-row__cat">{{ block.settings.name }}</span>
+          <p class="gsm-row__desc">{{ block.settings.description }}</p>
+          <div class="gsm-row__bar">
+            <i style="width:{{ block.settings.bar_percent }}%"></i>
+            {%- if block.settings.bar_percent >= 100 -%}<b style="left:100%"></b>{%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+      {%- if section.settings.note != blank -%}
+        <p class="gsm-note">{{ section.settings.note }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JV — Escala GSM",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Entiende la tela" },
+    { "type": "richtext", "id": "heading", "label": "Título", "default": "<p>¿Qué significa<br>GSM?</p>" },
+    { "type": "richtext", "id": "body", "label": "Texto", "default": "<p>GSM significa gramos por metro cuadrado. Es una referencia del peso del tejido. No determina por sí solo la calidad de una prenda, pero sí influye en su sensación, estructura y caída.</p>" },
+    { "type": "text", "id": "link_label", "label": "Enlace — texto", "default": "Conoce nuestras telas" },
+    { "type": "url", "id": "link_url", "label": "Enlace — destino" },
+    { "type": "text", "id": "note", "label": "Nota inferior", "default": "El gramaje no debe presentarse como una medida absoluta de calidad. La composición, el tejido, la fibra y la construcción de la prenda también son importantes." }
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Nivel de gramaje",
+      "settings": [
+        { "type": "text", "id": "range", "label": "Rango GSM", "default": "140–160" },
+        { "type": "text", "id": "name", "label": "Nombre", "default": "Ligera" },
+        { "type": "textarea", "id": "description", "label": "Descripción" },
+        { "type": "range", "id": "bar_percent", "label": "Proporción visual de la barra (%)", "min": 10, "max": 100, "step": 1, "default": 50 }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "JV — Escala GSM",
+      "blocks": [
+        { "type": "tier", "settings": { "range": "140–160", "name": "Ligera", "description": "Tela ligera y fresca. Ideal para una sensación cómoda y de menor peso.", "bar_percent": 25 } },
+        { "type": "tier", "settings": { "range": "180–220", "name": "Equilibrada", "description": "Mayor estructura sin llegar a una sensación excesivamente pesada. Un equilibrio entre comodidad y presencia.", "bar_percent": 48 } },
+        { "type": "tier", "settings": { "range": "250–300", "name": "Heavyweight", "description": "Tela de mayor peso y estructura. Diseñada para generar una caída más sólida.", "bar_percent": 70 } },
+        { "type": "tier", "settings": { "range": "400+", "name": "Super Heavyweight", "description": "Construcción considerablemente pesada. Máxima estructura y una sensación textil contundente.", "bar_percent": 100 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

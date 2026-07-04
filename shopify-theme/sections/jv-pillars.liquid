@@ -1,0 +1,49 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+
+<section class="jv section section--tight reveal" id="calidad">
+  <div class="wrap">
+    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    <h2 class="h-display h-display--lg">{{ section.settings.heading }}</h2>
+    <div class="jv-pillars__grid" style="margin-top:46px">
+      {%- for block in section.blocks -%}
+        <div class="pilar" {{ block.shopify_attributes }}>
+          <span class="pilar__tag mono">§{{ forloop.index | prepend: '0' }}</span>
+          <h3 class="h-display h-display--md">{{ block.settings.title }}</h3>
+          <p>{{ block.settings.body }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JV — Pilares JV",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Nuestro criterio" },
+    { "type": "richtext", "id": "heading", "label": "Título", "default": "<p>Lo que buscamos<br>en una prenda.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Criterio",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título" },
+        { "type": "textarea", "id": "body", "label": "Texto" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "JV — Pilares JV",
+      "blocks": [
+        { "type": "pillar", "settings": { "title": "Tela", "body": "La composición y el tejido cambian la experiencia de una prenda." } },
+        { "type": "pillar", "settings": { "title": "Peso", "body": "El gramaje influye en la estructura y la sensación de la tela." } },
+        { "type": "pillar", "settings": { "title": "Caída", "body": "La manera en la que una playera se proyecta sobre el cuerpo importa." } },
+        { "type": "pillar", "settings": { "title": "Construcción", "body": "Cuello, costuras y acabados forman parte de la calidad percibida." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

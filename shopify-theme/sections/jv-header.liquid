@@ -1,0 +1,58 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+<script src="{{ 'jv-theme.js' | asset_url }}" defer="defer"></script>
+
+<div class="jv" style="position:sticky;top:0;z-index:40;height:62px;display:flex;align-items:center;background:rgba(5,5,5,.92);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08);">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+    <button type="button" aria-label="Abrir menú" data-jv-menu-open style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 24 24" style="width:19px;height:19px;stroke:#f5f3ee;fill:none;stroke-width:1.4;"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+    <a href="{{ routes.root_url }}" class="logo-lockup" style="font-size:1.05rem;">{{ section.settings.brand_line1 }}<em>{{ section.settings.brand_line2 }}</em></a>
+    <nav style="display:none;gap:30px;align-items:center;" class="jv-nav-desktop">
+      {%- for link in section.settings.main_menu.links -%}
+        <a href="{{ link.url }}" style="font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#f5f3ee;">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+    <div style="display:flex;align-items:center;gap:18px;">
+      <a href="{{ routes.search_url }}" aria-label="Buscar" style="width:19px;height:19px;"><svg viewBox="0 0 24 24" style="stroke:#f5f3ee;fill:none;stroke-width:1.4;"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></a>
+      <a href="{{ routes.cart_url }}" aria-label="Carrito" style="width:19px;height:19px;position:relative;">
+        <svg viewBox="0 0 24 24" style="stroke:#f5f3ee;fill:none;stroke-width:1.4;"><path d="M4 8h16l-1.4 11.2a2 2 0 01-2 1.8H7.4a2 2 0 01-2-1.8L4 8z"/><path d="M8 8V6a4 4 0 018 0v2" stroke-linecap="round"/></svg>
+        {%- if cart.item_count > 0 -%}<span class="mono" style="position:absolute;top:-8px;right:-10px;background:#b89a58;color:#050505;font-size:.6rem;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;">{{ cart.item_count }}</span>{%- endif -%}
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="jv" style="position:fixed;inset:0;z-index:60;visibility:hidden;" id="jv-nav-drawer">
+  <div data-jv-menu-close style="position:absolute;inset:0;background:rgba(5,5,5,.6);opacity:0;transition:opacity .3s ease;"></div>
+  <div style="position:absolute;top:0;left:0;bottom:0;width:86%;max-width:360px;background:#050505;border-right:1px solid #292929;transform:translateX(-100%);transition:transform .32s ease;padding:24px 26px 32px;display:flex;flex-direction:column;">
+    <button type="button" aria-label="Cerrar menú" data-jv-menu-close style="align-self:flex-end;width:36px;height:36px;">
+      <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:#f5f3ee;fill:none;stroke-width:1.6;"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg>
+    </button>
+    <nav style="margin-top:24px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;">
+      {%- for link in section.settings.mobile_menu.links -%}
+        <a href="{{ link.url }}" data-jv-menu-close style="font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:1.7rem;padding:11px 0;border-bottom:1px solid #292929;color:#f5f3ee;">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+  </div>
+</div>
+
+<style>
+  body.jv-menu-open{overflow:hidden;}
+  body.jv-menu-open #jv-nav-drawer{visibility:visible;}
+  body.jv-menu-open #jv-nav-drawer > div:first-child{opacity:1;}
+  body.jv-menu-open #jv-nav-drawer > div:last-child{transform:translateX(0)!important;}
+  @media(min-width:900px){.jv-nav-desktop{display:flex!important;}}
+</style>
+
+{% schema %}
+{
+  "name": "JV — Header",
+  "settings": [
+    { "type": "text", "id": "brand_line1", "label": "Marca — línea 1", "default": "Jerarquía" },
+    { "type": "text", "id": "brand_line2", "label": "Marca — línea 2", "default": "Volátil" },
+    { "type": "link_list", "id": "main_menu", "label": "Menú de escritorio", "default": "main-menu" },
+    { "type": "link_list", "id": "mobile_menu", "label": "Menú móvil (completo)", "default": "main-menu" }
+  ],
+  "presets": [{ "name": "JV — Header" }]
+}
+{% endschema %}

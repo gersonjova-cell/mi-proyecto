@@ -1,0 +1,68 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+
+<section class="jv section reveal" id="colecciones">
+  <div class="wrap">
+    <div style="max-width:640px">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="h-display h-display--lg">{{ section.settings.heading }}</h2>
+      {%- if section.settings.subheading != blank -%}
+        <p class="body-text" style="margin-top:18px">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+    <div class="jv-collections__grid" style="margin-top:48px">
+      {%- for block in section.blocks -%}
+        {%- assign letter = 'a' -%}
+        {%- if forloop.index == 2 -%}{%- assign letter = 'b' -%}{%- endif -%}
+        {%- if forloop.index == 3 -%}{%- assign letter = 'c' -%}{%- endif -%}
+        <div class="c-card c-card--{{ letter }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image -%}
+            <div class="c-card__img media">{{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', alt: block.settings.title }}</div>
+          {%- endif -%}
+          <div class="c-card__scrim"></div>
+          <div class="c-card__body">
+            <h3 class="h-display">{{ block.settings.title }}</h3>
+            <p>{{ block.settings.body }}</p>
+            {%- if block.settings.link_label != blank -%}
+              <a href="{{ block.settings.link_url | default: '#' }}" class="link">{{ block.settings.link_label }} →</a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JV — Colecciones editoriales",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Elige tu silueta" },
+    { "type": "richtext", "id": "heading", "label": "Título", "default": "<p>Encuentra tu<br>estructura.</p>" },
+    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Diferentes cortes. Diferentes pesos. Una misma obsesión por la presencia." }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Tarjeta de colección",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "text", "id": "title", "label": "Título" },
+        { "type": "textarea", "id": "body", "label": "Texto" },
+        { "type": "text", "id": "link_label", "label": "Enlace — texto" },
+        { "type": "url", "id": "link_url", "label": "Enlace — destino" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "JV — Colecciones editoriales",
+      "blocks": [
+        { "type": "collection_card", "settings": { "title": "Core", "body": "Lo esencial de Jerarquía Volátil. Prendas versátiles, limpias y construidas para formar parte de tu rotación diaria.", "link_label": "Descubrir Core" } },
+        { "type": "collection_card", "settings": { "title": "Heavyweight", "body": "Más peso. Mayor estructura. Una caída con mayor presencia.", "link_label": "Ver Heavyweight" } },
+        { "type": "collection_card", "settings": { "title": "Oversize", "body": "Mayor volumen, libertad y una silueta que transforma la forma en la que cae la prenda.", "link_label": "Descubrir Oversize" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

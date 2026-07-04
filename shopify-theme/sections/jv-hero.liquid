@@ -1,0 +1,57 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+
+<section class="jv jv-hero">
+  <div class="measure-rail"></div>
+  <div class="hero-media">
+    <div class="hero-img hero-img--mobile media">
+      {%- if section.settings.image_mobile -%}
+        {{ section.settings.image_mobile | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.image_mobile.alt | default: 'Playera premium Jerarquía Volátil' }}
+      {%- elsif section.settings.image_desktop -%}
+        {{ section.settings.image_desktop | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.image_desktop.alt | default: 'Playera premium Jerarquía Volátil' }}
+      {%- endif -%}
+    </div>
+    <div class="hero-img hero-img--desktop media">
+      {%- if section.settings.image_desktop -%}
+        {{ section.settings.image_desktop | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.image_desktop.alt | default: 'Playera premium Jerarquía Volátil' }}
+      {%- endif -%}
+    </div>
+    <div class="hero-scrim"></div>
+  </div>
+  <div class="hero-content">
+    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    <h1 class="h-display h-display--xl">{{ section.settings.heading }}</h1>
+    {%- if section.settings.subheading != blank -%}
+      <p class="hero-sub">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+    <div class="btn-row">
+      {%- if section.settings.button1_label != blank -%}
+        <a class="btn btn--primary" href="{{ section.settings.button1_link | default: '#' }}">{{ section.settings.button1_label }} →</a>
+      {%- endif -%}
+      {%- if section.settings.button2_label != blank -%}
+        <a class="btn btn--ghost" href="{{ section.settings.button2_link | default: '#' }}">{{ section.settings.button2_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+  {%- if section.settings.tape_text != blank -%}
+    <div class="hero-tape"><span>{{ section.settings.tape_text }}</span></div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "JV — Hero editorial",
+  "settings": [
+    { "type": "image_picker", "id": "image_desktop", "label": "Imagen (escritorio)" },
+    { "type": "image_picker", "id": "image_mobile", "label": "Imagen (móvil)", "info": "Usa un recorte vertical (4:5 o 9:16) donde la prenda no se corte." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Jerarquía Volátil" },
+    { "type": "richtext", "id": "heading", "label": "Título", "default": "<p>Prendas<br>con presencia.</p>" },
+    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "La calidad también se nota en el peso, la estructura y la caída." },
+    { "type": "text", "id": "button1_label", "label": "Botón primario — texto", "default": "Comprar ahora" },
+    { "type": "url", "id": "button1_link", "label": "Botón primario — enlace" },
+    { "type": "text", "id": "button2_label", "label": "Botón secundario — texto", "default": "Descubrir JV" },
+    { "type": "url", "id": "button2_link", "label": "Botón secundario — enlace" },
+    { "type": "text", "id": "tape_text", "label": "Texto inferior", "default": "Desliza para conocer la prenda" }
+  ],
+  "presets": [{ "name": "JV — Hero editorial" }]
+}
+{% endschema %}

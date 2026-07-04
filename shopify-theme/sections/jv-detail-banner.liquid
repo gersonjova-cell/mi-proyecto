@@ -1,0 +1,38 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+
+<section class="jv jv-detail">
+  <div class="media">
+    {%- if section.settings.image -%}
+      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', alt: section.settings.image.alt | default: 'Detalle de costura y textura de playera Jerarquía Volátil' }}
+    {%- endif -%}
+  </div>
+  <div class="detail-scrim"></div>
+  <div class="detail-content">
+    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    <h2 class="h-display h-display--lg" style="color:#f5f3ee">{{ section.settings.heading }}</h2>
+    <div class="detail-lines">
+      {%- for line in section.settings.lines | newline_to_br | split: '<br />' -%}
+        {%- assign trimmed = line | strip -%}
+        {%- if trimmed != blank -%}<p>{{ trimmed }}</p>{%- endif -%}
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.link_label != blank -%}
+      <a href="{{ section.settings.link_url | default: '#' }}" class="link">{{ section.settings.link_label }} →</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JV — Mira más cerca",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagen (macro detalle)" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Detalles" },
+    { "type": "richtext", "id": "heading", "label": "Título", "default": "<p>Mira<br>más cerca.</p>" },
+    { "type": "textarea", "id": "lines", "label": "Líneas de texto (una por renglón)", "default": "Una playera puede parecer sencilla.\nAcércate a la tela.\nObserva el cuello.\nSiente el peso.\nMira cómo cae.\nAhí empiezan las diferencias." },
+    { "type": "text", "id": "link_label", "label": "Enlace — texto", "default": "Ver todas las prendas" },
+    { "type": "url", "id": "link_url", "label": "Enlace — destino" }
+  ],
+  "presets": [{ "name": "JV — Mira más cerca" }]
+}
+{% endschema %}

@@ -1,0 +1,26 @@
+{{ 'jv-theme.css.liquid' | asset_url | stylesheet_tag }}
+
+<section class="jv section jv-manifesto reveal">
+  <div class="wrap">
+    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    <h2 class="h-display h-display--lg">{{ section.settings.heading }}</h2>
+    <div class="body-text" style="margin-top:26px">{{ section.settings.body }}</div>
+    {%- if section.settings.link_label != blank -%}
+      <a href="{{ section.settings.link_url | default: '#' }}" class="link">{{ section.settings.link_label }} →</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JV — Manifiesto de marca",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Construcción JV" },
+    { "type": "richtext", "id": "heading", "label": "Título", "default": "<p>No todas las playeras<br>están construidas igual.</p>" },
+    { "type": "richtext", "id": "body", "label": "Texto", "default": "<p>El peso de la tela, la calidad de la fibra, el corte y la construcción cambian por completo cómo se siente una prenda. En Jerarquía Volátil seleccionamos prendas por su estructura, caída y presencia. Porque una playera puede ser básica. <strong>Sin sentirse común.</strong></p>" },
+    { "type": "text", "id": "link_label", "label": "Enlace — texto", "default": "Conoce nuestra calidad" },
+    { "type": "url", "id": "link_url", "label": "Enlace — destino" }
+  ],
+  "presets": [{ "name": "JV — Manifiesto de marca" }]
+}
+{% endschema %}

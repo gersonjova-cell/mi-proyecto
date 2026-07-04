@@ -1,0 +1,36 @@
+{%- comment -%} Expects: product {%- endcomment -%}
+<article class="p-card">
+  <a href="{{ product.url }}" class="media p-card__img" style="position:relative;display:block;">
+    {%- if product.featured_media -%}
+      {{ product.featured_media | image_url: width: 800 | image_tag: loading: 'lazy', alt: product.featured_media.alt | default: product.title }}
+    {%- endif -%}
+    {%- if product.media.size > 1 -%}
+      {{ product.media[1] | image_url: width: 800 | image_tag: loading: 'lazy', class: 'p-card__img-alt', alt: '' }}
+    {%- endif -%}
+  </a>
+  <div class="p-card__body">
+    <a href="{{ product.url }}" class="p-card__name">{{ product.title }}</a>
+    {%- if product.type != blank or product.metafields.jv.gsm != blank -%}
+      <span class="p-card__meta">
+        {{- product.type -}}
+        {%- if product.type != blank and product.metafields.jv.gsm != blank %} · {% endif -%}
+        {%- if product.metafields.jv.gsm != blank -%}{{ product.metafields.jv.gsm }} GSM{%- endif -%}
+      </span>
+    {%- endif -%}
+    <span class="p-card__price mono-num">
+      {%- if product.compare_at_price > product.price -%}<s>{{ product.compare_at_price | money }}</s>{%- endif -%}
+      {{ product.price | money }}
+    </span>
+    {%- if product.options_with_values -%}
+      {%- for option in product.options_with_values -%}
+        {%- if option.name == 'Color' or option.name == 'Colour' -%}
+          <div class="p-card__swatches">
+            {%- for value in option.values limit: 5 -%}
+              <span title="{{ value }}"></span>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</article>
