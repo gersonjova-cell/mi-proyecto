@@ -22,11 +22,17 @@ Este paquete convierte el prototipo del Home en secciones Shopify reales, editab
 ## Después de instalar
 
 1. **Menú de navegación**: crea en *Online Store → Navigation* un menú `main-menu` con los enlaces: Tienda, Core, Heavyweight, Oversize, Novedades, Guía de tallas, Nuestra calidad, Nosotros, Contacto. El header (`jv-header.liquid`) lo toma automáticamente.
-2. **Header y WhatsApp flotante globales**: la mayoría de temas 2.0 controlan el header desde `sections/header-group.json`. Agrega ahí el section `jv-header`, y añade `{% render 'jv-whatsapp-float' %}` justo antes de `</body>` en `layout/theme.liquid`.
-3. **Footer global**: agrega el section `jv-footer` en `sections/footer-group.json` (o en el layout, según tu tema).
-4. **Colección para "Selección JV"**: en el Personalizador, entra a la sección *JV — Selección destacada* y elige la colección real que quieres destacar.
-5. **Imágenes**: sube tus fotografías editoriales en cada sección (Hero tiene campos separados para escritorio y móvil — usa un recorte vertical para móvil donde la prenda no se corte).
-6. **GSM / Metafield opcional**: si quieres mostrar el gramaje en las tarjetas de producto automáticamente, crea un metafield `product.jv.gsm` (tipo número) y complétalo por producto; la tarjeta lo muestra solo si existe.
+2. **Header global (Dawn)**: este paquete incluye `sections/header-group.json` ya editado para usar `jv-header` en vez del header por defecto de Dawn.
+   ⚠️ **Antes de sobrescribir**: abre tu `sections/header-group.json` actual en el editor de código y compáralo con el de aquí. Si es la versión estándar de Dawn (solo contiene la sección `"header"`), puedes reemplazarlo tal cual. Si tu tienda ya tiene modificaciones ahí (bloques extra, apps instaladas que agregaron secciones), **no lo sobrescribas entero** — solo cambia la línea `"type": "header"` por `"type": "jv-header"`, dejando todo lo demás igual.
+3. **Footer global (Dawn)**: mismo criterio con `sections/footer-group.json` — cambia `"type": "footer"` por `"type": "jv-footer"` (el archivo incluido ya lo trae así).
+4. **WhatsApp flotante**: abre `layout/theme.liquid`, busca `</body>` y justo antes agrega `{% render 'jv-whatsapp-float' %}`.
+5. **Colección para "Selección JV"**: en el Personalizador, entra a la sección *JV — Selección destacada* y elige la colección real que quieres destacar.
+6. **Imágenes**: sube tus fotografías editoriales en cada sección (Hero tiene campos separados para escritorio y móvil — usa un recorte vertical para móvil donde la prenda no se corte).
+7. **GSM / Metafield opcional**: si quieres mostrar el gramaje en las tarjetas de producto automáticamente, crea un metafield `product.jv.gsm` (tipo número) y complétalo por producto; la tarjeta lo muestra solo si existe.
+
+### Recomendación antes de tocar producción
+
+Antes de subir nada a `proddigit.shop`, duplica el tema actual (*Temas → ⋯ → Duplicar*) y haz los cambios sobre la copia. Así puedes revisar todo en la vista previa del tema duplicado sin afectar la tienda que ven tus clientes, y solo lo publicas cuando estés conforme.
 
 ## Estructura de archivos
 
@@ -38,6 +44,8 @@ assets/
   jv-archivo.woff2         — tipografía de texto
   jv-plexmono-400/500.woff2 — tipografía mono para specs, GSM y precios
 sections/
+  header-group.json        — engancha jv-header como header global (Dawn)
+  footer-group.json        — engancha jv-footer como footer global (Dawn)
   jv-announcement-bar.liquid
   jv-header.liquid
   jv-hero.liquid
