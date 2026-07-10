@@ -46,7 +46,7 @@ python3 -m http.server 8765
 # luego abre http://localhost:8765
 ```
 
-**Opción D — GitHub Pages (en línea):** en GitHub ve a *Settings → Pages → Source: GitHub Actions*. El workflow incluido (`.github/workflows/pages.yml`) publica la aplicación automáticamente en cada push a `main`.
+**Opción D — GitHub Pages (en línea):** el workflow incluido (`.github/workflows/pages.yml`) publica la aplicación automáticamente en cada push a `main` e intenta activar Pages por sí solo. Si el primer despliegue fallara, actívalo una vez en *Settings → Pages → Source: GitHub Actions* y vuelve a lanzar el workflow.
 
 Después: pulsa **Abrir** (o arrastra archivos a la ventana) y usa **Ejemplos** para probar con los EPS/PS incluidos. En `samples/` hay archivos de muestra.
 
