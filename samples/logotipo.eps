@@ -1,0 +1,27 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 360 240
+%%Title: Logotipo de ejemplo
+%%Creator: VisorMaestro EPS
+%%CreationDate: 2026
+%%LanguageLevel: 2
+%%Pages: 1
+%%EndComments
+% Fondo degradado simulado con bandas
+/band { newpath 0 exch moveto 360 0 rlineto 0 12 rlineto -360 0 rlineto closepath fill } def
+0 1 19 {
+  /i exch def
+  0.08 0.10 i 20 div 0.55 mul add 0.25 i 20 div 0.5 mul add setrgbcolor
+  i 12 mul band
+} for
+% Circulos superpuestos translucidos (simulados)
+0.98 0.55 0.15 setrgbcolor 120 130 62 0 360 arc fill
+0.90 0.20 0.25 setrgbcolor 180 110 58 0 360 arc fill
+0.20 0.65 0.90 setrgbcolor 236 138 66 0 360 arc fill
+1 1 1 setrgbcolor 178 128 30 0 360 arc fill
+1 1 1 setrgbcolor
+/Helvetica-Bold findfont 30 scalefont setfont
+64 36 moveto (VisorMaestro) show
+/Helvetica findfont 14 scalefont setfont
+120 16 moveto (EPS \(muestra vectorial\)) show
+showpage
+%%EOF

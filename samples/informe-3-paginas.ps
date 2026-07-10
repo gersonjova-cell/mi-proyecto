@@ -1,0 +1,31 @@
+%!PS-Adobe-3.0
+%%Title: Informe multipagina
+%%Creator: VisorMaestro EPS
+%%Pages: 3
+%%DocumentMedia: A5 420 595 0 () ()
+%%EndComments
+/pagina {
+  /num exch def
+  << /PageSize [420 595] >> setpagedevice
+  % Cabecera
+  0.18 0.32 0.65 setrgbcolor 0 545 420 50 rectfill
+  1 1 1 setrgbcolor /Helvetica-Bold findfont 20 scalefont setfont
+  24 562 moveto (Informe de ejemplo) show
+  % Numero de pagina grande
+  0.92 0.94 0.98 setrgbcolor 210 300 120 0 360 arc fill
+  0.18 0.32 0.65 setrgbcolor
+  /Helvetica-Bold findfont 130 scalefont setfont
+  num 2 eq { 172 255 moveto } { 175 255 moveto } ifelse
+  num 3 string cvs show
+  % Pie
+  0.4 0.4 0.45 setrgbcolor /Helvetica findfont 12 scalefont setfont
+  24 24 moveto (Pagina ) show num 3 string cvs show ( de 3 - navegue con las flechas) show
+  showpage
+} def
+%%Page: 1 1
+1 pagina
+%%Page: 2 2
+2 pagina
+%%Page: 3 3
+3 pagina
+%%EOF
