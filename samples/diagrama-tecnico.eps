@@ -1,0 +1,38 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 400 300
+%%Title: Diagrama tecnico
+%%Creator: VisorMaestro EPS
+%%LanguageLevel: 2
+%%Pages: 1
+%%EndComments
+1 1 1 setrgbcolor 0 0 400 300 rectfill
+% Rejilla
+0.85 0.88 0.92 setrgbcolor 0.6 setlinewidth
+0 20 400 { /x exch def newpath x 0 moveto x 300 lineto stroke } for
+0 20 300 { /y exch def newpath 0 y moveto 400 y lineto stroke } for
+% Ejes
+0.2 0.2 0.25 setrgbcolor 1.6 setlinewidth
+newpath 40 40 moveto 40 270 lineto stroke
+newpath 40 40 moveto 370 40 lineto stroke
+% Curva de Bezier
+0.90 0.25 0.20 setrgbcolor 2.4 setlinewidth
+newpath 40 60 moveto 130 260 250 30 370 220 curveto stroke
+% Curva secundaria punteada
+0.15 0.45 0.85 setrgbcolor 1.8 setlinewidth [6 4] 0 setdash
+newpath 40 100 moveto 150 90 260 220 370 130 curveto stroke
+[] 0 setdash
+% Puntos de control
+0.15 0.45 0.85 setrgbcolor
+40 100 4 0 360 arc fill 370 130 4 0 360 arc fill
+0.90 0.25 0.20 setrgbcolor
+40 60 4 0 360 arc fill 370 220 4 0 360 arc fill
+% Etiquetas
+0.1 0.1 0.15 setrgbcolor
+/Helvetica-Bold findfont 16 scalefont setfont
+48 278 moveto (Rendimiento vs. carga) show
+/Helvetica findfont 11 scalefont setfont
+310 46 moveto (carga \(%\)) show
+/Helvetica findfont 11 scalefont setfont
+gsave 30 200 translate 90 rotate 0 0 moveto (respuesta \(ms\)) show grestore
+showpage
+%%EOF
