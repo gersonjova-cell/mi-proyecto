@@ -33,7 +33,7 @@ Aplicación web creada desde cero que recrea (y amplía) todas las funciones de 
 
 > La aplicación es 100 % estática: solo necesita servirse por HTTP (los navegadores no permiten cargar WebAssembly desde `file://`).
 
-**Opción A — Windows:** doble clic en `iniciar-windows.bat` (requiere Python instalado).
+**Opción A — Windows:** doble clic en `iniciar-windows.bat`. No requiere instalar nada: si no encuentra Python, usa automáticamente el servidor PowerShell integrado de Windows (`servidor.ps1`).
 
 **Opción B — macOS / Linux:**
 ```sh
